@@ -6,9 +6,8 @@ mt19937 rd(chrono::steady_clock::now().time_since_epoch().count());
 
 long long Rand(long long l, long long h) {
     assert(l <= h);
-    return abs(l + rd() * 1LL * rd() % (h - l + 1));
+    return abs(l + ( ( rd() * 1ll)  % (h - l + 1)));
 }
-
 void MakeTest() {
     string filename = string(NAME) + ".inp";
     ofstream inp(filename);
@@ -24,7 +23,7 @@ void MakeTest() {
 		}
 		inp <<'\n';
 	}
-    inp.close(); // Ðóng file sau khi ghi xong
+    inp.close(); // ÃÃ³ng file sau khi ghi xong
 }
 
 const int NTEST = 15*15;
@@ -37,10 +36,10 @@ int main() {
         system((string(NAME) + ".exe").c_str());
 
         #ifdef _WIN32
-            // H? di?u hành Windows
+            // H? di?u hÃ nh Windows
             if (system(("fc " + string(NAME) + ".out " + string(NAME) + ".ans").c_str()) != 0)
         #else
-            // H? di?u hành Linux ho?c các h? di?u hành khác
+            // H? di?u hÃ nh Linux ho?c cÃ¡c h? di?u hÃ nh khÃ¡c
             if (system(("diff " + string(NAME) + ".out " + string(NAME) + ".ans").c_str()) != 0)
         #endif
         {
